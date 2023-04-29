@@ -1,8 +1,13 @@
 .starship {
   background-color: #998b13;
   border-radius: 1rem;
+  transition: all 0.3s;
 }
-
+.starship:hover {
+  box-shadow: 0 10px 10px rgba(153, 140, 19, 0.25);
+  cursor: pointer;
+  transform: translateY(-4px);
+}
 .starship img {
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
@@ -12,4 +17,22 @@
 .image-box {
   width: 100%;
   height: 50%;
+}
+.details {
+  padding: 1rem 0.6rem 0 0.6rem;
+}
+.details h3 {
+  font-size: 1rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.details p {
+  line-height: 1.5;
+  text-align: left;
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+.link {
+  text-decoration: none;
+  color: #fffde9;
 }

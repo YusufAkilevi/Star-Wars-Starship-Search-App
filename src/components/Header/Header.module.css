@@ -9,6 +9,7 @@
   align-items: center;
 }
 .header input {
+  color: #fffad2;
   min-width: 15rem;
   padding: 0.4rem;
   border-radius: 10px;
@@ -25,6 +26,7 @@
   gap: 1rem;
 }
 .header label {
+  color: #fffad2;
   text-align: left;
 }
 
