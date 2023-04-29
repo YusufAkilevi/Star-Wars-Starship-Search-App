@@ -1,0 +1,25 @@
+.back {
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #484848;
+  color: #fffad2;
+}
+.back:hover {
+  background-color: #ffe81f;
+  color: #242424;
+}
+.error-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.error-page h1 {
+  text-align: center;
+}

@@ -8,7 +8,7 @@ const StarshipList = (props) => {
   if (props.starshipData.length === 0 && !props.loading) {
     return (
       <div style={{ marginTop: "3rem" }}>
-        Sorry! Starship could NOT found. Please try another one.
+        {`No results found for this search "${props.input}". Please try another one.`}
       </div>
     );
   }

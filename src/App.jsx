@@ -6,7 +6,7 @@ import { API_URL } from "./config";
 import Header from "./components/Header/Header";
 import StarshipList from "./components/Starships/StarhipList";
 import StarshipDetails from "./components/Starships/StarshipDetails";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const [input, setInput] = useState("");
@@ -76,6 +76,7 @@ function App() {
             <Header onGetSearchInput={getSearchInput} />
 
             <StarshipList
+              input={input}
               onPageNumberHandle={pageNumberHandler}
               starshipData={filteredStarshipData}
               loading={loading}
