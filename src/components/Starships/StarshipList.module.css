@@ -8,8 +8,8 @@
 }
 .button {
   margin-bottom: 2rem;
-
   padding: 0.4rem 0.8rem;
+  height: 30px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -17,4 +17,26 @@
 .button:hover {
   background-color: #ffe81f;
   color: #242424;
+}
+@media (max-width: 900px) {
+  .starship-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .starship-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 450px) {
+  .starship-list {
+    grid-template-columns: 1fr;
+    margin: 3rem 3rem;
+  }
+}
+@media (max-width: 375px) {
+  .starship-list {
+    grid-template-columns: 1fr;
+    margin: 3rem 3rem;
+  }
 }

@@ -12,8 +12,9 @@ function App() {
   const [input, setInput] = useState("");
   const [starshipData, setStarshipData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [pageNumber, setPageNumber] = useState(0);
-  // const [filteredStarshipData, setFilteredStarshipData] = useState([]);
+  const [filteredDataRes, setFilteredDataRes] = useState();
+  const [allDataRes, setAllDataRes] = useState();
+  const [enableLoadMore, setEnableLoadMore] = useState(false);
 
   /////////////////////////////////////////////////
   /////////////////////////////////////////////////
@@ -25,26 +26,29 @@ function App() {
   /////////////////////////////////////////////////
   /////////////////////////////////////////////////
 
-  const getData = async (url) => {
+  const getData = (url) => {
     try {
       setLoading(true);
-      const { data: res1 } = await axios.get(url);
-      const { data: res2 } = await axios.get(url + "?page=2");
-      const { data: res3 } = await axios.get(url + "?page=3");
-      const { data: res4 } = await axios.get(url + "?page=4");
-
-      setStarshipData((prevState) => [
-        ...prevState,
-        ...res1.results,
-        ...res2.results,
-        ...res3.results,
-        ...res4.results,
-      ]);
+      axios
+        .get(url)
+        .then((res) => {
+          setAllDataRes(res.data);
+          if (res.data.next && !enableLoadMore) {
+            setEnableLoadMore(true);
+          } else if (!res.data.next && enableLoadMore) {
+            setEnableLoadMore(false);
+          }
+          setLoading(false);
+          setStarshipData((prevState) => {
+            return [...prevState, ...res.data.results];
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
-      setPageNumber((prevPageNumber) => prevPageNumber + 1);
     }
   };
   /////////////////////////////////////////////////
@@ -52,21 +56,37 @@ function App() {
 
   const getSearchInput = (input) => {
     setInput(input);
+    getFilteredData(input);
   };
   /////////////////////////////////////////////////
   /////////////////////////////////////////////////
-  const pageNumberHandler = () => {
-    setPageNumber((prevPageNumber) => prevPageNumber + 1);
+  const onLoadMoreClick = () => {
+    if (input === "") {
+      getData(allDataRes.next);
+    } else {
+      getData(filteredDataRes.next);
+    }
   };
 
-  const filteredStarshipData = starshipData.filter((starship) => {
-    if (
-      starship.name.toLowerCase().includes(input.toLowerCase()) ||
-      starship.model.toLowerCase().includes(input.toLowerCase())
-    ) {
-      return starship;
-    }
-  });
+  const getFilteredData = (searchInput) => {
+    axios
+      .get(API_URL + `?search=${searchInput}`)
+      .then((res) => {
+        const data = res.data;
+        if (data.next && !enableLoadMore) {
+          setEnableLoadMore(true);
+        } else if (!data.next && enableLoadMore) {
+          setEnableLoadMore(false);
+        }
+        setFilteredDataRes(data);
+        setStarshipData(data.results);
+      })
+      .catch((err) => {
+        console.warn("Error", err);
+        setStarshipData([]);
+      });
+  };
+
   return (
     <Routes>
       <Route
@@ -77,10 +97,10 @@ function App() {
 
             <StarshipList
               input={input}
-              onPageNumberHandle={pageNumberHandler}
-              starshipData={filteredStarshipData}
+              onLoadMoreClick={onLoadMoreClick}
+              starshipData={starshipData}
               loading={loading}
-              pageNumber={pageNumber}
+              enableLoadMore={enableLoadMore}
             />
           </div>
         }

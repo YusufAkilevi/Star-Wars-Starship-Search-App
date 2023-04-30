@@ -1,26 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./StarshipDetails.module.css";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import StarshipImages from "../../assets/StarshipImage.json";
+import axios from "axios";
 const StarshipDetails = (props) => {
-  const { starshipName } = useParams();
-  const starshipData = props.starshipData.find(
-    (starship) => starship.name === starshipName
-  );
-  const starshipImage = StarshipImages.find(
-    (starship) => starship.name === starshipName
-  ).img;
-  console.log(starshipData);
+  const [starshipData, setStarshipData] = React.useState({});
+  const [starshipImage, setStarshipImage] = React.useState("");
+  const location = useLocation();
+  useEffect(() => {
+    axios
+      .get(location.state.url)
+      .then((res) => {
+        setStarshipData(res.data);
+        setStarshipImage(
+          StarshipImages.find((starship) => starship.name === res.data.name).img
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   return (
     <div className={classes.container}>
       <Link className={classes.back} to="/">
-        Go Back
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          width="24px"
+          height="24px"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+          />
+        </svg>
       </Link>
       <div className={classes["starship-info"]}>
         <div className={classes["image-box"]}>
-          <img src={starshipImage} alt={starshipName} />
+          <img src={starshipImage} alt={starshipData.name} />
         </div>
-        <h2>{starshipName}</h2>
+        <h2>{starshipData.name}</h2>
         <div className={classes.details}>
           <p>
             {" "}

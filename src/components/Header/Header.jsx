@@ -6,7 +6,6 @@ const Header = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     props.onGetSearchInput(searchInput);
-    setSearchInput("");
   };
   const searchInputChangeHandler = (event) => {
     setSearchInput(event.target.value);

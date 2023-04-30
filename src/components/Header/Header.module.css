@@ -46,3 +46,43 @@
   background-color: #ffe81f;
   color: #242424;
 }
+@media (max-width: 450px) {
+  .logo {
+    max-width: 20rem;
+  }
+  .header form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .header input {
+    min-width: 18rem;
+    padding: 0.6rem;
+  }
+  .header button {
+    padding: 0.6rem 1.2rem;
+    width: 100%;
+  }
+}
+@media (max-width: 375px) {
+  .logo {
+    max-width: 20rem;
+  }
+  .header form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .header input {
+    min-width: 18rem;
+    padding: 0.6rem;
+  }
+  .header button {
+    padding: 0.6rem 1.2rem;
+    width: 100%;
+  }
+}

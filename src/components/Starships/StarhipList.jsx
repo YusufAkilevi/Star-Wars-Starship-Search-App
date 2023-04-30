@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import StarshipCart from "./Starship";
 import classes from "./StarshipList.module.css";
 import Loading from "../UI/Loading";
@@ -14,25 +14,22 @@ const StarshipList = (props) => {
   }
   return (
     <React.Fragment>
-      {props.loading && props.pageNumber === 0 ? (
-        <Loading />
+      {props.loading && props.starshipData.length === 0 ? (
+        <Loading style={{ marginTop: 24 }} />
       ) : (
         <ul className={classes["starship-list"]}>
-          {props.starshipData
-            ?.slice(0, props.pageNumber * 10)
-            .map((starship) => (
-              <StarshipCart key={starship.name} starship={starship} />
-            ))}
+          {props.starshipData.map((starship) => (
+            <StarshipCart key={starship.name} starship={starship} />
+          ))}
         </ul>
       )}
 
-      {props.starshipData.length > 10 &&
-        props.pageNumber > 0 &&
-        props.pageNumber < 4 && (
-          <button className={classes.button} onClick={props.onPageNumberHandle}>
-            Load More
-          </button>
-        )}
+      {props.enableLoadMore && !props.loading && (
+        <button className={classes.button} onClick={props.onLoadMoreClick}>
+          Load More
+        </button>
+      )}
+      {props.enableLoadMore && props.loading && <Loading />}
     </React.Fragment>
   );
 };

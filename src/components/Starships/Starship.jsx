@@ -15,7 +15,11 @@ const Starship = ({ starship }) => {
 
   return (
     <li className={classes.starship}>
-      <Link className={classes.link} to={`/starshipDetails/${starship.name}`}>
+      <Link
+        className={classes.link}
+        to={`/starshipDetails/${starship.name}`}
+        state={{ url: starship.url }}
+      >
         <div className={classes["image-box"]}>
           <img src={starshipImage.img} alt={starship.model} loading="lazy" />
         </div>
