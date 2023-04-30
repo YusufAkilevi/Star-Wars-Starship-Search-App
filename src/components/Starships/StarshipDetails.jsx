@@ -3,6 +3,8 @@ import classes from "./StarshipDetails.module.css";
 import { useParams, Link, useLocation } from "react-router-dom";
 import StarshipImages from "../../assets/StarshipImage.json";
 import axios from "axios";
+import BackIcon from "../UI/BackIcon";
+
 const StarshipDetails = (props) => {
   const [starshipData, setStarshipData] = React.useState({});
   const [starshipImage, setStarshipImage] = React.useState("");
@@ -24,26 +26,11 @@ const StarshipDetails = (props) => {
   return (
     <div className={classes.container}>
       <Link className={classes.back} to="/">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          width="24px"
-          height="24px"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-          />
-        </svg>
+        <BackIcon />
       </Link>
       <div className={classes["starship-info"]}>
         <div className={classes["image-box"]}>
-          <img src={starshipImage} alt={starshipData.name} />
+          <img src={starshipImage} alt={starshipData.name} loading="lazy" />
         </div>
         <h2>{starshipData.name}</h2>
         <div className={classes.details}>

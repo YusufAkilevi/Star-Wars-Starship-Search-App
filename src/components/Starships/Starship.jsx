@@ -7,11 +7,6 @@ const Starship = ({ starship }) => {
   const starshipImage = starshipImages.find(
     (image) => image.name === starship.name
   );
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   navigate(`/starshipDetails/${starship.name}`, { state: starship });
-  // }, [clicked]);
 
   return (
     <li className={classes.starship}>

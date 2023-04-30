@@ -4,7 +4,6 @@ import classes from "./StarshipList.module.css";
 import Loading from "../UI/Loading";
 
 const StarshipList = (props) => {
-  // if (props.starshipData.length === 0) throw new Error("something went wrong");
   if (props.starshipData.length === 0 && !props.loading) {
     return (
       <div style={{ marginTop: "3rem" }}>
