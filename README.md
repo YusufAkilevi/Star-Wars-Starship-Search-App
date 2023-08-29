@@ -1,6 +1,4 @@
-# FMSS Bilişim & Patika Frontend Practicum Final Project
-
-This is a solution to the FMSS Bilişim & Patika frontend practicum final case.
+# StarWars Starship Search App
 
 ## Getting Started
 This project is created by Vite.js,
@@ -56,7 +54,8 @@ To get started with this project, follow these steps:
 
 ### Links
 
-- Solution URL: [https://github.com/YusufAkilevi/FMSS-Final-Project-Starwars-App](https://github.com/YusufAkilevi/FMSS-Final-Project-Starwars-App)
+- Solution URL: [https://github.com/YusufAkilevi/Starwars-Starship-Search-App/](https://github.com/YusufAkilevi/Starwars-Starship-Search-App/)
+- Live URL: [https://starship-search-app.netlify.app/](https://starship-search-app.netlify.app/)
 
 ## My process
 
