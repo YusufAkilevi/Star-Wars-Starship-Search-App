@@ -4,9 +4,12 @@ import starshipImages from "../../assets/StarshipImage";
 import { Link, useNavigate } from "react-router-dom";
 
 const Starship = ({ starship }) => {
-  const starshipImage = starshipImages.find(
-    (image) => image.name === starship.name
-  );
+  const starshipImage = starshipImages.find((image) => {
+    if (image.name === starship.name) {
+      console.log(image.name, starship.name);
+    }
+    return image.name === starship.name;
+  });
 
   return (
     <li className={classes.starship}>
