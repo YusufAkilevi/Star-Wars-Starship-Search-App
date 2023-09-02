@@ -1,4 +1,4 @@
-# StarWars Starship Search App
+# Star Wars Starship Search App
 
 ## Getting Started
 This project is created by Vite.js,
